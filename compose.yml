@@ -1,0 +1,14 @@
+services:
+  registry:
+    image: registry:2
+    network_mode: "host"
+    restart: always
+    volumes:
+      - ./registry_cache:/var/lib/registry
+    configs:
+      - source: registry_config
+        target: /etc/docker/registry/config.yml
+        mode: 0440
+configs:
+  registry_config:
+    file: ./config.yml
